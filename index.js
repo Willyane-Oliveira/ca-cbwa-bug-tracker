@@ -27,7 +27,7 @@ app.post('/projects/:slug_info/issues', issues.postController);
 
 
 app.get('/',(req, res)=>{
-  res.send('Hello World');
+  res.send('Hello World modified');
 })
 
 app.listen(port, hostname, ()=>{
