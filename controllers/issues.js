@@ -9,7 +9,7 @@ module.exports = () => {
   };
 
   const fetByProject = async(req, res)=>{
-    res.json(await issues.getByProjectId (req.params.slug));
+    res.json(await issues.fetByProject(req.params.slug));
    };
 
   const postController = async(req, res)=>{

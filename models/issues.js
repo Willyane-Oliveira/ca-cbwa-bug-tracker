@@ -3,18 +3,18 @@ const ObjectID = require('mongodb').ObjectID;
 const COLLECTION = 'issues';
 
 module.exports = ()=>{
-  const get = async(issueNumber = null)=>{
-    if(!issueNumber){
+  const get = async(slug_info = null)=>{
+    if(!slug_info){
       const grabAllIssues = await db.get(COLLECTION);
       return grabAllIssues;
     }
-    const specificIssue = await db.get(COLLECTION, {issueNumber});
+    const specificIssue = await db.get(COLLECTION, {slug_info});
     return specificIssue;
   };
 
-  const fetByProject = async(issueNumber)=>{
-    let expression = new RegExp(issueNumber);
-    const byProject = await db.get(COLLECTION, {issueNumber: expression});
+  const fetByProject = async(slug_info)=>{
+    let expression = new RegExp(slug_info);
+    const byProject = await db.get(COLLECTION, {slug_info: expression});
     return byProject;
   }
 
