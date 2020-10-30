@@ -32,6 +32,7 @@ module.exports = ()=>{
     console.log(users)
     if (users.length !== 1){
       console.log('02: wrong key');
+      return null;
     }
 
     return users[0];
