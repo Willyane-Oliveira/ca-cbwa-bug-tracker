@@ -20,10 +20,26 @@ module.exports = ()=>{
     });
 
     return results.result;
-  }
+  };
+
+  const getByKey = async(key)=>{
+    if(!key){
+      console.log('01: missing key');
+      return null;
+    }
+
+    const users = await db.get(COLLECTION, {key});
+    console.log(users)
+    if (users.length !== 1){
+      console.log('02: wrong key');
+    }
+
+    return users[0];
+  };
 
   return{
     get,
     add,
+    getByKey
   }
 }
