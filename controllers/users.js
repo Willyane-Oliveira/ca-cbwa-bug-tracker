@@ -2,10 +2,24 @@
 
  module.exports = () => {
    const fetController = async(req, res) =>{
-     res.json(await users.get());
+     const {user, error} = await users.get();
+     if(error){
+       res.status(500).json({
+         error,
+       });
+     }
+     res.json(user);
    };
    const fetByEmail = async(req, res)=>{
-    res.json(await users.get(req.params.email));
+    const {user, error} = await users.get(req.params.email);
+
+    if(error){
+      res.status(500).json({
+        error,
+      });
+    }
+    res.json(user);
+
    };
 
    const postController = async(req, res)=>{
@@ -14,13 +28,18 @@
      let usertype = req.body.usertype;
      let key = req.body.key;
 
-     const result = await users.add(name, email, usertype, key);
-     res.json(result);
+     const {results, error} = await users.add(name, email, usertype, key);
+     if(error){
+      res.status(500).json({
+        error,
+      });
+    }
+     res.json(results);
    };
 
    return{
      fetController,
      fetByEmail,
      postController,
-   }
+   };
  };
